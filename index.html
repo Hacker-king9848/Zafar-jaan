@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Zafar Special</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url('https://files.catbox.moe/otxsli.jpg') no-repeat center center fixed;
+      background-size: cover;
+      font-family: 'Segoe UI', cursive, sans-serif;
+      text-align: center;
+      color: #fff;
+    }
+    .container {
+      margin-top: 100px;
+    }
+    .stylish {
+      font-size: 28px;
+      font-weight: bold;
+      text-shadow: 2px 2px 10px #000;
+      margin: 20px;
+    }
+    .button {
+      display: inline-block;
+      padding: 15px 35px;
+      font-size: 24px;
+      font-weight: bold;
+      margin: 15px;
+      border-radius: 40px;
+      text-decoration: none;
+      color: #fff;
+      background: linear-gradient(45deg, #ff00ff, #ff6600, #00ccff, #ffcc00);
+      box-shadow: 0 0 20px rgba(255,255,255,0.8);
+      animation: glow 2s infinite linear;
+      cursor: pointer;
+    }
+    @keyframes glow {
+      0% { box-shadow: 0 0 10px #ff00ff; }
+      25% { box-shadow: 0 0 15px #ff6600; }
+      50% { box-shadow: 0 0 20px #00ccff; }
+      75% { box-shadow: 0 0 15px #ffcc00; }
+      100% { box-shadow: 0 0 10px #ff00ff; }
+    }
+    .hidden { display: none; }
+    .emoji {
+      font-size: 80px;
+      animation: pop 1s infinite;
+    }
+    @keyframes pop {
+      0%,100% { transform: scale(1); opacity: 0; }
+      50% { transform: scale(1.5); opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <!-- Pehla Message -->
+    <div id="message1" class="stylish">
+      🌹 Zafar, meri zindagi ka sabse khoobsurat hissa tum ho... 🌹
+    </div>
+    <button class="button" onclick="showNext()">OK</button>
+
+    <!-- Lamba Message -->
+    <div id="message2" class="stylish hidden">
+      💖 Tum meri duniya ho, meri muskaan ho, aur meri duaon ka sabse khoobsurat hissa ho... 💖 <br>
+      Aaj main dil se kehna chahta hoon ke <b>tum meri mohabbat ho aur meri zindagi ki rooh ho</b> 💕
+    </div>
+
+    <!-- Buttons -->
+    <div id="options" class="hidden">
+      <button class="button" onclick="loveYou()">💞 Love you Jameer 😘</button>
+      <button class="button" onclick="angry()">😔 Nahi, main ab bhi tumse naraaz hoon</button>
+    </div>
+
+    <!-- Emojis -->
+    <div id="emojis" class="hidden"></div>
+
+    <!-- Poetry & Dua -->
+    <div id="poetry" class="stylish hidden">
+      ✨ Tere bina adhura hoon main, <br>
+      Tere saath poori meri kahani hai... ✨ <br><br>
+      ❤️ Mera dil kitna khush hai aaj ye izhaar likha hai ❤️ <br>
+      🌹 Zafar ke liye ek khoobsurat dua: <br>
+      Khuda tumhari zindagi ko mohabbat aur rehmat se bhar de... Ameen 🤲
+    </div>
+
+    <!-- Angry Dua -->
+    <div id="goodbye" class="stylish hidden">
+      🥀 Zafar, agar tum naraaz ho... <br>
+      To meri dua hai ke Allah tumhari har dua qubool kare, <br>
+      Aur meri taraf se hamesha ke liye alvida... 💔
+    </div>
+
+    <!-- Gift Button -->
+    <div id="gift" class="hidden">
+      <p class="stylish">💝 Meri taraf se ap ke liye ek chhota sa gift 💝</p>
+      <a href="https://wa.me/923304210252?text=*dear%20send%20me%20my%20Gift😘*" target="_blank" class="button">🎁 Gift</a>
+    </div>
+  </div>
+
+  <script>
+    function showNext() {
+      document.getElementById('message1').classList.add('hidden');
+      document.getElementById('message2').classList.remove('hidden');
+      document.getElementById('options').classList.remove('hidden');
+    }
+
+    function loveYou() {
+      showEmojis("😘", 3, function() {
+        document.getElementById('poetry').classList.remove('hidden');
+        document.getElementById('gift').classList.remove('hidden');
+      });
+    }
+
+    function angry() {
+      showEmojis("🥺", 3, function() {
+        document.getElementById('goodbye').classList.remove('hidden');
+      });
+    }
+
+    function showEmojis(symbol, repeat, callback) {
+      let container = document.getElementById('emojis');
+      container.innerHTML = "";
+      container.classList.remove('hidden');
+      let count = 0;
+      let interval = setInterval(() => {
+        container.innerHTML = `<div class="emoji">${symbol.repeat(5)}</div>`;
+        count++;
+        if (count === repeat) {
+          clearInterval(interval);
+          setTimeout(() => {
+            container.classList.add('hidden');
+            container.innerHTML = "";
+            callback();
+          }, 1000);
+        }
+      }, 1000);
+    }
+  </script>
+</body>
+</html>
